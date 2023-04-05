@@ -43,15 +43,18 @@ public class TasksController {
         while (currIndex < columns) {
             Task task = new Task();
             task.setDescription(data.getFirst("description-%d".formatted(currIndex)));
-            // System.out.printf(">>>>>>>> description: %s\n", data.getFirst("description-%d".formatted(currIndex)));
+            // System.out.printf(">>>>>>>> description: %s\n",
+            // data.getFirst("description-%d".formatted(currIndex)));
 
             Date dueDate = dateFormat.parse(data.getFirst("dueDate-%d".formatted(currIndex)));
             task.setDueDate(dueDate);
-            // System.out.printf(">>>>>>>> date: %s\n", data.getFirst("dueDate-%d".formatted(currIndex)));
+            // System.out.printf(">>>>>>>> date: %s\n",
+            // data.getFirst("dueDate-%d".formatted(currIndex)));
 
             Integer priority = Integer.parseInt(data.getFirst("priority-%d".formatted(currIndex)));
             task.setPriority(priority);
-            // System.out.printf(">>>>>>>> priority: %s\n", data.getFirst("priority-%d".formatted(currIndex)));
+            // System.out.printf(">>>>>>>> priority: %s\n",
+            // data.getFirst("priority-%d".formatted(currIndex)));
 
             taskLists.add(task);
             currIndex += 1;
@@ -62,6 +65,7 @@ public class TasksController {
         if (iTaskCount > 0) {
             ModelAndView modelAndView = new ModelAndView("result");
             modelAndView.addObject("taskCount", iTaskCount.toString());
+            modelAndView.addObject("username", userName);
             response.setStatus(200);
             return modelAndView;
 
